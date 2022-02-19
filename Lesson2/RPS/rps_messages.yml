@@ -1,0 +1,23 @@
+welcome: "Welcome to Rock, Paper, Scissors, Lizard, Spock!"
+
+choice: "Choose one: 'rock', 'paper', 'scissors', 'lizard', 'spock'."
+
+abbreviation: "Just so you know, you can also type 'r' for rock, 'p' for 'paper', 's' for scissors, 'l' for 'lizard', and 'sp' for 'spock'."
+
+choice_not_valid: "That's not a valid choice."
+
+play_again?: "Do you want to play again?"
+
+goodbye: "Thank you for playing. Goodbye!"
+
+final_choice: "You chose: #{choice}; Computer chose: #{computer_choice}"
+
+seperator: '  '
+
+player_wins: "You are the WINNER of the game! Congratulations!"
+
+computer_wins: 'Computer is the WINNER of the game! Better luck next time.'
+
+next_round: 'Next round!'
+
+rules: 'First one to win 3 rounds will be the WINNER of the game! Buckle up!'
