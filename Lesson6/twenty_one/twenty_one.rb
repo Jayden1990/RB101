@@ -1,5 +1,6 @@
 CARD_SUITS = ['Hearts', 'Spades', 'Diamonds', 'Clubs']
-CARDS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen','King', 'Ace']
+CARDS = ['2', '3', '4', '5', '6', '7', '8', '9', '10'] +
+        ['Jack', 'Queen', 'King', 'Ace']
 
 system 'clear'
 
@@ -20,18 +21,18 @@ def initial_hand(player, hand)
     hand << [CARD_SUITS.sample, CARDS.sample]
   end
     if player == 'dealer'
-    prompt "Dealer has: #{hand[0]} and an unknown card."
-    else 
+      prompt "Dealer has: #{hand[0]} and an unknown card."
+    else
       prompt "You have: #{hand[0]} and #{hand[1]}."
     end
 end
-  
+
 def total(hand)
   values = hand.map { |card| card[1] }
 
   sum = 0
   values.each do |value|
-    if value == "Ace"
+    if value == 'Ace'
       sum += 11
     elsif value.to_i == 0
       sum += 10
@@ -40,7 +41,7 @@ def total(hand)
     end
   end
 
-  values.select { |value| value == "Ace" }.count.times do
+  values.select { |value| value == 'Ace' }.count.times do
     sum -= 10 if sum > 21
   end
 
@@ -63,16 +64,15 @@ def win?(player, dealer)
   else
     prompt "It's a tie!"
   end
-
 end
 
 prompt "Hello there, welcome to Twenty-One!"
 sleep 2
 
-prompt "The goal of Twenty-One is to try to get as close to 21 as possible, without going over." +
-" If you go over 21, it's a 'bust' and you lose."
+prompt "The goal of Twenty-One is to try to get as close to 21 as possible, " <<
+       "without going over. If you go over 21, it's a 'bust' and you lose."
 
-sleep 2
+sleep 3
 
 prompt "How close can you get to 21 without going over? Let's begin."
 sleep 3
@@ -102,7 +102,7 @@ loop do
     hit(player_hand)
     display_cards('player', player_hand)
   end
-  
+
   loop do
     if busted?(player_hand)
       display_cards('dealer', dealer_hand)
@@ -114,15 +114,17 @@ loop do
 
     prompt "Dealers turn..."
     sleep 3
-    
+
     loop do
       if total(dealer_hand) >= 17
         break
       else
         hit(dealer_hand)
+        prompt "Dealer chose to hit!"
+        display_cards('dealer', dealer_hand)
       end
     end
-    
+
     if busted?(dealer_hand)
       display_cards('player', player_hand)
       display_cards('dealer', dealer_hand)
