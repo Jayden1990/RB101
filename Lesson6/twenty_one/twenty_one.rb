@@ -8,19 +8,19 @@ def prompt(msg)
   puts "=> #{msg}"
 end
 
-def display_cards(player, hand)
-  if player == 'dealer'
+def display_cards(turn, hand)
+  if turn == 'dealer'
     prompt "The Dealers hand is #{hand}, which is a total of: #{total(hand)}"
   else
     prompt "Your hand is: #{hand}, which is a total of: #{total(hand)}"
   end
 end
 
-def initial_hand(player, hand)
+def initial_hand(turn, hand)
   2.times do
     hand << [CARD_SUITS.sample, CARDS.sample]
   end
-    if player == 'dealer'
+    if turn == 'dealer'
       prompt "Dealer has: #{hand[0]} and an unknown card."
     else
       prompt "You have: #{hand[0]} and #{hand[1]}."
@@ -69,8 +69,9 @@ end
 prompt "Hello there, welcome to Twenty-One!"
 sleep 2
 
-prompt "The goal of Twenty-One is to try to get as close to 21 as possible, " <<
-       "without going over. If you go over 21, it's a 'bust' and you lose."
+prompt "The goal of Twenty-One is to try to get as close to 21 as possible."
+sleep 1
+prompt "If you go over 21, it's a 'bust' and you lose."
 
 sleep 3
 
@@ -99,6 +100,7 @@ loop do
     answer = gets.chomp.downcase
 
     break if answer == 'stay' || busted?(player_hand)
+    prompt "You Hit!"
     hit(player_hand)
     display_cards('player', player_hand)
   end
